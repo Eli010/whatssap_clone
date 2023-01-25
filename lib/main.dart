@@ -11,6 +11,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'WhatsApp',
+      theme: ThemeData(
+          fontFamily: "Manrope",
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Color(0xff128C7E),
+          ),
+          // brightness: Brightness.light,
+          // useMaterial3: true,
+          scaffoldBackgroundColor: Colors.white,
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
+            backgroundColor: Color(0xff10CE5F),
+          )),
       home: HomePage(),
     );
   }

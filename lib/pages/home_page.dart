@@ -1,3 +1,4 @@
+import 'package:codigo6_whatsapp_clone/pages/chats_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -7,12 +8,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  // TabController myTabController = TabController(length: 4, vsync: vsync);
-
+  //late = este controlador va ser inicializado luego
+  late TabController myTabController;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    myTabController = TabController(length: 4, vsync: this);
     print("Init");
   }
 
@@ -21,7 +23,7 @@ class _HomePageState extends State<HomePage>
     print("Build");
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xff128C7E),
+        // backgroundColor: const Color(0xff128C7E),
         title: const Text("WhatsApp"),
         actions: [
           IconButton(
@@ -43,24 +45,42 @@ class _HomePageState extends State<HomePage>
             ),
           )
         ],
-        // bottom: TabBar(
-        //   tabs: [
-        //     Text(
-        //       "hola",
-        //     ),
-        //     Text(
-        //       "hola",
-        //     ),
-        //     Text(
-        //       "hola",
-        //     ),
-        //     Text("hola",)
-        //   ],
-        // ),
+        bottom: TabBar(
+          controller: myTabController,
+          indicatorColor: Colors.white,
+          indicatorWeight: 3.5,
+          unselectedLabelColor: Colors.white54,
+          tabs: const [
+            Tab(
+              // text: "Hola",
+              icon: Icon(Icons.people_alt),
+            ),
+            Tab(
+              text: "Chats",
+            ),
+            Tab(
+              text: "Estados",
+            ),
+            Tab(
+              text: "Llamadas",
+            ),
+          ],
+        ),
       ),
-      body: Container(),
+      body: TabBarView(controller: myTabController, children: [
+        const Center(
+          child: Text("Comunidad"),
+        ),
+        ChatsPage(),
+        const Center(
+          child: Text("Estados"),
+        ),
+        const Center(
+          child: Text("Llamadas"),
+        ),
+      ]),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xff128C7E),
+        // backgroundColor: const Color(0xff128C7E),
         onPressed: () {},
         child: const Icon(
           Icons.message,
