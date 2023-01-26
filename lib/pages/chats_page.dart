@@ -6,7 +6,7 @@ class ChatsPage extends StatelessWidget {
   DataDummy mandarina = DataDummy();
   @override
   Widget build(BuildContext context) {
-    print(mandarina.chats);
+    // print(mandarina.chats);
     return ListView.builder(
         itemCount: mandarina.chats.length,
         itemBuilder: (

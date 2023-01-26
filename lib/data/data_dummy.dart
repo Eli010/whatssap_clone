@@ -1,4 +1,5 @@
 import 'package:codigo6_whatsapp_clone/models/chat_model.dart';
+import 'package:codigo6_whatsapp_clone/models/message_model.dart';
 
 class DataDummy {
   List<ChatModel> chats = [
@@ -30,6 +31,33 @@ class DataDummy {
         date: "12/04",
         isTyping: true,
         countMessage: 3)
+  ];
+  List<MessageModel> messages = [
+    MessageModel(
+      message: "Hola Como estas?",
+      type: "me",
+      time: "9:40 p. m.",
+    ),
+    MessageModel(
+      message: "Bien y tú?",
+      type: "other",
+      time: "9:42 p. m.",
+    ),
+    MessageModel(
+      message: "i am great",
+      type: "me",
+      time: "9:43 p. m.",
+    ),
+    MessageModel(
+      message: "how do you do?",
+      type: "me",
+      time: "9:44 p. m.",
+    ),
+    MessageModel(
+      message: "i watch tv end you ?",
+      type: "other",
+      time: "9:45 p. m.",
+    ),
   ];
   /*
   List<Map<String, String>> chats = [
