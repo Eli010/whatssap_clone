@@ -1,9 +1,16 @@
 import 'package:codigo6_whatsapp_clone/data/data_dummy.dart';
+import 'package:codigo6_whatsapp_clone/models/message_model.dart';
 import 'package:flutter/material.dart';
 
-class ChatDetailPage extends StatelessWidget {
-  DataDummy mandarina = DataDummy();
+class ChatDetailPage extends StatefulWidget {
+  @override
+  State<ChatDetailPage> createState() => _ChatDetailPageState();
+}
 
+class _ChatDetailPageState extends State<ChatDetailPage> {
+  bool isTyping = false;
+  DataDummy mandarina = DataDummy();
+  TextEditingController messageCrtl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -166,6 +173,17 @@ class ChatDetailPage extends StatelessWidget {
                     // Icon(Icons.emoji_emotions),
                     Expanded(
                       child: TextField(
+                        onChanged: (String value) {
+                          if (value.isNotEmpty) {
+                            isTyping = true;
+                            print(isTyping);
+                          } else {
+                            isTyping = false;
+                            print(isTyping);
+                          }
+                          setState(() {});
+                        },
+                        controller: messageCrtl,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           contentPadding: const EdgeInsets.symmetric(
@@ -173,7 +191,7 @@ class ChatDetailPage extends StatelessWidget {
                           filled: true,
                           fillColor: Colors.white,
                           prefixIcon: const Icon(
-                            Icons.emoji_emotions,
+                            Icons.emoji_emotions_outlined,
                             color: Color(0xff8796A2),
                           ),
                           suffixIcon: Row(
@@ -209,14 +227,31 @@ class ChatDetailPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                      child: const CircleAvatar(
-                        radius: 23,
-                        backgroundColor: Color.fromARGB(255, 30, 169, 111),
-                        child: Icon(
-                          Icons.mic,
-                          color: Colors.white,
+                    GestureDetector(
+                      onTap: () {
+                        print("hablar");
+                        print(messageCrtl.text);
+                        if (messageCrtl.text.isNotEmpty) {
+                          MessageModel message = MessageModel(
+                              message: messageCrtl.text,
+                              type: "me",
+                              time: "19:55");
+                          // print(mandarina.messages[index]);
+                          mandarina.messages.add(message);
+                          setState(() {});
+                          messageCrtl.clear();
+                        }
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                        child: CircleAvatar(
+                          radius: 23,
+                          backgroundColor: Color.fromARGB(255, 30, 169, 111),
+                          child: Icon(
+                            isTyping ? Icons.send : Icons.mic,
+                            color: Colors.white,
+                            size: 19,
+                          ),
                         ),
                       ),
                     )

@@ -1,4 +1,5 @@
 import 'package:codigo6_whatsapp_clone/pages/chats_page.dart';
+import 'package:codigo6_whatsapp_clone/pages/estado_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -71,9 +72,7 @@ class _HomePageState extends State<HomePage>
           child: Text("Comunidad"),
         ),
         ChatsPage(),
-        const Center(
-          child: Text("Estados"),
-        ),
+        EstadosPage(),
         const Center(
           child: Text("Llamadas"),
         ),
